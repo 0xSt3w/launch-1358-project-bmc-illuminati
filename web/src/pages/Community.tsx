@@ -22,7 +22,6 @@ const SOCIALS: { name: string; url: string | null }[] = [
   },
 ]
 
-]
 
 const FAQ: { q: string; a: string }[] = [
   {
