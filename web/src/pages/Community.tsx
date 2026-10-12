@@ -5,6 +5,7 @@ import { ExplorerLink } from '../components/ui'
 
 /** Official links are published by the owner. Nothing is invented here. */
 
+
 /** Official BMC Illuminati community links. */
 const SOCIALS: { name: string; url: string | null }[] = [
   {
