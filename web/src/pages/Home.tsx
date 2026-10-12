@@ -39,17 +39,23 @@ export function HomePage() {
           <span className="tri" style={{ insetInlineStart: '8%', insetBlockStart: '10%' }} aria-hidden="true" />
           <span className="tri purple" style={{ insetInlineEnd: '10%', insetBlockStart: '20%' }} aria-hidden="true" />
           <span className="tri gold" style={{ insetInlineStart: '18%', insetBlockEnd: '8%' }} aria-hidden="true" />
-          <Emblem variant="pyramid" animated title="Glowing green BMC pyramid with an all-seeing eye" />
+          <Emblem variant="pyramid" animated title={BRAND.officialImages
+            ? 'Glowing green BMC pyramid with an all-seeing eye'
+            : 'BMC pyramid emblem, a placeholder until the official image is supplied'} />
         </div>
       </section>
 
-      <section className="section" aria-labelledby="how">
+      <section className="section ecosystem" aria-labelledby="how">
+        {BRAND.officialImages ? (
+          <div className="hero-visual ecosystem-background" aria-hidden="true">
+            <Emblem variant="pyramid" />
+          </div>
+        ) : null}
         <SectionHead title="How the ecosystem works" id="how">
-          <p>Four parts, one token. Everything below runs on Ethereum and pays out only in BMC.</p>
+          <p>Four parts, one token. All of it runs on Ethereum mainnet, and every staking reward is paid in BMC.</p>
         </SectionHead>
         <div className="grid grid-4">
           <Card>
-            <Badge tone="legend">Know</Badge>
             <h3>BMC PASS</h3>
             <p>
               A collection of exactly {PASS_SUPPLY.total} ERC-721 collectibles: {PASS_SUPPLY.genesis} Genesis and{' '}
@@ -58,19 +64,16 @@ export function HomePage() {
             <Link to="/pass">Explore the PASS collection</Link>
           </Card>
           <Card>
-            <Badge tone="live">Create</Badge>
             <h3>Swap BMC</h3>
             <p>Buy or sell BMC with ETH through an established DEX once a verified liquidity route exists.</p>
             <Link to="/swap">Open the swap</Link>
           </Card>
           <Card>
-            <Badge tone="danger">Burn</Badge>
             <h3>IMD Burn Center</h3>
             <p>Burn IMD voluntarily, unlock profile customisation and community roles, and track manual buybacks.</p>
             <Link to="/burns">Open the burn center</Link>
           </Card>
           <Card>
-            <Badge tone="mystic">Rise</Badge>
             <h3>Staking</h3>
             <p>Stake BMC, stake PASSes, or both, and earn BMC rewards from funded pools. No new BMC is issued.</p>
             <Link to="/staking">Explore staking options</Link>
@@ -99,7 +102,7 @@ export function HomePage() {
             )}
           </Card>
           <Card>
-            <h3>BMC token</h3>
+            <h3 className="heading-with-emblem"><Emblem variant="logo" />BMC token</h3>
             <Stat
               label="Total supply (live from Ethereum)"
               value={bmc.isError ? 'Unavailable' : bmc.isLoading ? 'Loading…' : `${fmtToken(bmc.totalSupply, bmc.decimals, 0)} BMC`}

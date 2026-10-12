@@ -38,7 +38,11 @@ export function App() {
 
   return (
     <>
-      <a href="#main" className="skip-link">
+      <a href="#main" className="skip-link" onClick={(event) => {
+        event.preventDefault()
+        document.getElementById('main')?.focus()
+        document.getElementById('main')?.scrollIntoView()
+      }}>
         Skip to content
       </a>
       <div className="bg-layer" aria-hidden="true">

@@ -15,7 +15,7 @@ export const BRAND = {
   officialImages: false,
   images: {
     logo: './brand/bmc.jpg',
-    pyramid: './brand/bmc-imd.png',
+    pyramid: './brand/BMC%20IMD.png',
   },
 } as const
 

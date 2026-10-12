@@ -1,4 +1,5 @@
 import { Badge, Card, ExplorerLink, Notice, SectionHead, Stat } from '../components/ui'
+import { Emblem } from '../components/Emblem'
 import { PASS_SUPPLY } from '../config/brand'
 import { BMC_TOKEN, INTEGRATIONS, isVerified } from '../config/contracts'
 import { useBmc } from '../lib/bmc'
@@ -14,7 +15,6 @@ export function DashboardPage() {
     <>
       <section className="section">
         <div className="section-head">
-          <Badge tone="soon">Verified numbers only</Badge>
           <h1 style={{ fontSize: 'var(--text-xl)' }}>Ecosystem dashboard</h1>
           <p>
             Every figure here is read from a verified contract or shown as “Coming soon”. Nothing is estimated or invented.
@@ -23,7 +23,7 @@ export function DashboardPage() {
 
         <div className="grid grid-3">
           <Card>
-            <h3>BMC token</h3>
+            <h3 className="heading-with-emblem"><Emblem variant="logo" />BMC token</h3>
             <Stat label="Total supply (live)" value={supply} tone="cyber" />
             <p className="caption">
               <ExplorerLink address={BMC_TOKEN} />

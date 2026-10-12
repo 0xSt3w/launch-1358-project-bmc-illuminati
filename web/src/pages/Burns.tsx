@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Badge, Card, ComingSoon, Notice, SectionHead, Stat } from '../components/ui'
+import { Card, ComingSoon, Notice, SectionHead, Stat } from '../components/ui'
 import { NetworkGuard } from '../components/WalletButton'
 import { isVerified } from '../config/contracts'
 
@@ -25,20 +25,17 @@ export function BurnsPage() {
     <>
       <section className="section">
         <div className="section-head">
-          <Badge tone="danger">Burns are permanent</Badge>
           <h1 style={{ fontSize: 'var(--text-xl)' }}>IMD Burn Center</h1>
           <p>
-            Four ways IMD leaves circulation. Every burn here is disabled until the official IMD contract, its network and its
-            burn mechanism are verified and recorded in the site configuration.
+            Four ways IMD leaves circulation.
           </p>
         </div>
         <NetworkGuard />
         {!imdLive ? <ComingSoon integration="imdToken" /> : null}
         <div className="grid grid-2">
           <Card>
-            <Badge tone="danger">1 · Voluntary burn</Badge>
-            <h3>Burn IMD permanently</h3>
-            <p>Choose an amount of IMD to send to the verified burn mechanism. It can never be recovered.</p>
+            <h3>1. Voluntary burn</h3>
+            <p>Burn IMD permanently. Choose an amount to send to the verified burn mechanism. It can never be recovered.</p>
             <div className="field">
               <label htmlFor="burn-amount">Amount to burn</label>
               <div className="input-group">
@@ -74,8 +71,7 @@ export function BurnsPage() {
             </button>
           </Card>
           <Card tone="mystic">
-            <Badge tone="mystic">2 · PASS customisation</Badge>
-            <h3>Unlock frames, badges and themes</h3>
+            <h3>2. PASS customisation</h3>
             <p>
               Burn IMD to unlock optional website profile frames, animated badges and visual themes. These live on this site
               only and never modify immutable PASS metadata.
@@ -86,8 +82,7 @@ export function BurnsPage() {
             </button>
           </Card>
           <Card>
-            <Badge tone="legend">3 · Community privileges</Badge>
-            <h3>Roles, badges and events</h3>
+            <h3>3. Community privileges</h3>
             <p>
               Burn IMD for documented non-financial community roles, badges and event eligibility. Privileges carry no
               financial value and are listed publicly before they open.
@@ -98,14 +93,17 @@ export function BurnsPage() {
             </button>
           </Card>
           <Card>
-            <Badge>4 · Manual buyback &amp; burn</Badge>
-            <h3>Operator buyback</h3>
+            <h3>4. Manual buyback and burn</h3>
             <p>
               BMC transaction fees accumulate in the operator&rsquo;s existing main wallet. The operator manually allocates
               funds, buys IMD through a verified DEX route and manually burns it. No automation, no treasury withdrawals, no
               private-key access from this site.
             </p>
-            <a href="#buybacks" className="small">
+            <a href="#buybacks" className="small" onClick={(event) => {
+              event.preventDefault()
+              document.getElementById('buybacks')?.focus()
+              document.getElementById('buybacks')?.scrollIntoView()
+            }}>
               See the buyback dashboard
             </a>
           </Card>

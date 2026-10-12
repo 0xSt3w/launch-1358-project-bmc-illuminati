@@ -1,4 +1,5 @@
-import { Badge, Card, ComingSoon, Notice, SectionHead, Stat } from '../components/ui'
+import { Card, ComingSoon, Notice, SectionHead, Stat } from '../components/ui'
+import { Emblem } from '../components/Emblem'
 import { NetworkGuard } from '../components/WalletButton'
 import { PASS_WEIGHTS, REWARD_SPLIT } from '../config/brand'
 import { isVerified, type IntegrationKey } from '../config/contracts'
@@ -19,7 +20,6 @@ function StakeCard({
   const live = isVerified(integration)
   return (
     <Card tone={tone}>
-      <Badge tone={live ? 'live' : 'soon'}>{live ? 'Live' : 'Coming soon'}</Badge>
       <h3>{title}</h3>
       {children}
       <div className="grid grid-2">
@@ -39,7 +39,6 @@ function StakeCard({
           Withdraw
         </button>
       </div>
-      {!live ? <ComingSoon integration={integration} /> : null}
     </Card>
   )
 }
@@ -50,11 +49,9 @@ export function StakingPage() {
     <>
       <section className="section">
         <div className="section-head">
-          <Badge tone="mystic">Three options · rewards paid in BMC only</Badge>
-          <h1 style={{ fontSize: 'var(--text-xl)' }}>Staking</h1>
+          <h1 className="heading-with-emblem" style={{ fontSize: 'var(--text-xl)' }}><Emblem variant="logo" />Staking</h1>
           <p>
-            Lock BMC, BMC PASSes or both and earn BMC from pools the operator funds in advance. No new BMC is ever issued and
-            no APY is guaranteed: rewards stop when a pool is empty.
+            Lock BMC, BMC PASSes or both and earn BMC from pools the operator funds in advance.
           </p>
         </div>
         <NetworkGuard />
@@ -66,6 +63,7 @@ export function StakingPage() {
             <Stat label="Your PASS balance" value="Coming soon" note="Read from the verified PASS contract" />
           </Card>
         </div>
+        {!isVerified('tokenStaking') ? <ComingSoon integration="tokenStaking" /> : null}
         <div className="grid grid-3">
           <StakeCard integration="tokenStaking" title="1 · BMC token staking">
             <p>Stake BMC and earn BMC rewards from a funded pool. Withdraw any time the contract allows.</p>
@@ -81,7 +79,7 @@ export function StakingPage() {
 
       <section className="section" aria-labelledby="weights">
         <SectionHead title="PASS reward weights" id="weights" />
-        <div className="table-wrap">
+        <div className="table-wrap" role="region" aria-labelledby="weights" tabIndex={0}>
           <table>
             <thead>
               <tr>
@@ -121,7 +119,7 @@ export function StakingPage() {
         <Notice title="No guaranteed yield" tone="warn">
           <p>
             Rewards are paid only from BMC the operator deposits into each pool. If a pool is not funded, staking opens
-            nothing and pays nothing. Check the funded amount shown on each card before staking.
+            nothing and pays nothing. No new BMC is issued and no APY is guaranteed. Check the funded amount shown on each card before staking.
           </p>
         </Notice>
       </section>

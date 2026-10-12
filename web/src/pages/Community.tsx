@@ -1,4 +1,4 @@
-import { Badge, Card, Notice, SectionHead } from '../components/ui'
+import { Card, Notice, SectionHead } from '../components/ui'
 import { BRAND, PASS_SUPPLY } from '../config/brand'
 import { BMC_TOKEN } from '../config/contracts'
 import { ExplorerLink } from '../components/ui'
@@ -37,7 +37,6 @@ export function CommunityPage() {
     <>
       <section className="section">
         <div className="section-head">
-          <Badge tone="live">{BRAND.slogan}</Badge>
           <h1 style={{ fontSize: 'var(--text-xl)' }}>Community</h1>
           <p>Project information, announcements, official channels and the safety basics every collector should know.</p>
         </div>

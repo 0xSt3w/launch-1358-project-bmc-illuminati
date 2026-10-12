@@ -1,4 +1,4 @@
-import { useAccount, useChainId, useConnect, useDisconnect, useSwitchChain } from 'wagmi'
+import { useAccount, useConnect, useDisconnect, useSwitchChain } from 'wagmi'
 import { CHAIN_ID, CHAIN_NAME } from '../config/contracts'
 import { shortAddress } from '../lib/format'
 
@@ -7,8 +7,9 @@ import { shortAddress } from '../lib/format'
  * Never asks for seed phrases or approvals: connection only.
  */
 export function WalletButton({ compact = false }: { compact?: boolean }) {
-  const { address, isConnected } = useAccount()
-  const chainId = useChainId()
+  // Read the connector's chain: the configured transport stays on mainnet even
+  // when a connected wallet selects an unsupported network.
+  const { address, isConnected, chainId } = useAccount()
   const { connectors, connect, isPending, error } = useConnect()
   const { disconnect } = useDisconnect()
   const { switchChain, isPending: switching } = useSwitchChain()
@@ -61,8 +62,7 @@ export function WalletButton({ compact = false }: { compact?: boolean }) {
 
 /** Inline banner for pages with on-chain actions. */
 export function NetworkGuard() {
-  const { isConnected } = useAccount()
-  const chainId = useChainId()
+  const { isConnected, chainId } = useAccount()
   if (!isConnected || chainId === CHAIN_ID) return null
   return (
     <div className="notice notice-warn" role="alert">

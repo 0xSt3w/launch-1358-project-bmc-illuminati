@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Badge, Card, ComingSoon, Notice, Stat } from '../components/ui'
+import { Card, ComingSoon, Stat } from '../components/ui'
 import { NetworkGuard, WalletButton } from '../components/WalletButton'
 import { INTEGRATIONS, isVerified } from '../config/contracts'
 import { useBmc } from '../lib/bmc'
@@ -23,11 +23,9 @@ export function SwapPage() {
     <>
       <section className="section">
         <div className="section-head">
-          <Badge tone={routeLive ? 'live' : 'soon'}>{routeLive ? 'Route verified' : 'No verified route yet'}</Badge>
           <h1 style={{ fontSize: 'var(--text-xl)' }}>Swap BMC</h1>
           <p>
-            Trade ETH and BMC through an established Ethereum DEX. The swap button stays disabled until a verified liquidity
-            route is configured. No new token, exchange contract or pool is created here.
+            Trade ETH and BMC through an established Ethereum DEX once a verified liquidity route exists.
           </p>
         </div>
         <NetworkGuard />
@@ -151,12 +149,6 @@ export function SwapPage() {
             </Card>
           </div>
         </div>
-        <Notice title="What a verified route means">
-          <p>
-            A route is verified when the pool address, DEX router and token pair are confirmed on-chain and recorded in the
-            site configuration. Until then quotes are not shown, so nothing on this page can be mistaken for a live price.
-          </p>
-        </Notice>
       </section>
     </>
   )

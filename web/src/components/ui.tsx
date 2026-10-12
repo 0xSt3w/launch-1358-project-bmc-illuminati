@@ -71,11 +71,6 @@ export function ComingSoon({ integration, extra }: { integration: IntegrationKey
   return (
     <Notice title={`${i.label}: coming soon`}>
       <p>{i.note}</p>
-      {i.job ? (
-        <p className="caption">
-          Development job <code className="break">{i.job}</code>
-        </p>
-      ) : null}
       {extra}
     </Notice>
   )
@@ -84,7 +79,7 @@ export function ComingSoon({ integration, extra }: { integration: IntegrationKey
 export function SectionHead({ title, children, id }: { title: string; children?: ReactNode; id?: string }) {
   return (
     <div className="section-head">
-      <h2 id={id}>{title}</h2>
+      <h2 id={id} tabIndex={id ? -1 : undefined}>{title}</h2>
       {children}
     </div>
   )

@@ -43,11 +43,24 @@ test('committed export has relative assets and share metadata', () => {
   assert.match(html, /rel="icon"[^>]*href="\.\/favicon\.svg"/)
   assert.match(html, /name="description"/)
   assert.match(html, /property="og:title"/)
-  assert.match(html, /property="og:image" content="\.\/og\.svg"/)
+  assert.match(html, /property="og:image" content="(?:\.\/og\.png|https:\/\/[^\"]+)"/)
+  assert.match(html, /name="twitter:image"/)
+  assert.match(html, /rel="icon" type="image\/png" sizes="32x32" href="\.\/favicon-32\.png"/)
   for (const m of html.matchAll(/(?:src|href)="([^"]+)"/g)) {
     assert.ok(m[1].startsWith('./') || m[1].startsWith('#'), `asset URL must be relative: ${m[1]}`)
   }
   for (const m of html.matchAll(/(?:src|href)="\.\/([^"]+)"/g)) {
     assert.ok(existsSync(join(dist, m[1])), `referenced asset exists: ${m[1]}`)
+  }
+})
+
+test('raster share image and favicon have the declared dimensions', () => {
+  const dist = join(here, '..', '..', 'dist')
+  for (const [name, width, height] of [['og.png', 1200, 630], ['favicon-32.png', 32, 32]]) {
+    const png = readFileSync(join(dist, name))
+    assert.equal(png.subarray(0, 8).toString('hex'), '89504e470d0a1a0a')
+    assert.equal(png.subarray(12, 16).toString(), 'IHDR')
+    assert.equal(png.readUInt32BE(16), width)
+    assert.equal(png.readUInt32BE(20), height)
   }
 })

@@ -65,10 +65,9 @@ export function PassPage() {
     <>
       <section className="section">
         <div className="section-head">
-          <Badge tone="mystic">ERC-721 collection</Badge>
           <h1 style={{ fontSize: 'var(--text-xl)' }}>BMC PASS</h1>
           <p>
-            Exactly {PASS_SUPPLY.total} collectibles: {PASS_SUPPLY.genesis} Genesis and {PASS_SUPPLY.standard} Standard. Every
+            Exactly {PASS_SUPPLY.total} ERC-721 collectibles: {PASS_SUPPLY.genesis} Genesis and {PASS_SUPPLY.standard} Standard. Every
             mint permanently burns BMC. Minting opens only after the contract is deployed and verified.
           </p>
         </div>
@@ -97,16 +96,14 @@ export function PassPage() {
         <SectionHead title="Mint" id="mint" />
         <div className="grid grid-2">
           <Card tone="legend">
-            <Badge tone="legend">Phase 1 · mints 1–40</Badge>
-            <h3>Guaranteed Genesis PASS</h3>
+            <h3>Mints 1–40: guaranteed Genesis PASS</h3>
             <p>
               Price: {fmtInt(PASS_SUPPLY.earlyPriceBmc)} BMC burned per mint. The first successful buyer receives Legendary
               Genesis #1. Mints 2–40 receive Genesis #2–40.
             </p>
           </Card>
           <Card tone="mystic">
-            <Badge tone="mystic">Phase 2 · mints 41–500</Badge>
-            <h3>Mystery PASS</h3>
+            <h3>Mints 41–500: Mystery PASS</h3>
             <p>
               Price: {fmtInt(PASS_SUPPLY.mysteryPriceBmc)} BMC burned per mint. The verified contract randomly assigns{' '}
               {PASS_SUPPLY.mysteryGenesis} Genesis and {PASS_SUPPLY.standard} Standard without replacement.
@@ -127,8 +124,8 @@ export function PassPage() {
           <span id="mint-why" className="field-help">
             Minting is disabled until the PASS contract is deployed and verified.
           </span>
-          {!mintLive ? <ComingSoon integration="pass" /> : null}
         </Card>
+        {!mintLive ? <ComingSoon integration="pass" /> : null}
       </section>
 
       <section className="section" aria-labelledby="legend">
@@ -141,7 +138,6 @@ export function PassPage() {
               <Emblem variant="logo" animated title="Legendary Genesis #1 placeholder emblem" />
             </div>
             <div className="stack">
-              <Badge tone="legend">Legendary · 1 of 1</Badge>
               <h3>Awarded to the first successful mint</h3>
               <p>
                 Genesis artwork is a set of 77 original black-and-gold hooded frogs with a golden third eye and a floating
