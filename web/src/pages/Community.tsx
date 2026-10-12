@@ -1,12 +1,24 @@
-import { Card, Notice, SectionHead } from '../components/ui'
+i
+import { Card, Notice, SectionHead, ExplorerLink } from '../components/ui'
 import { BRAND, PASS_SUPPLY } from '../config/brand'
 import { BMC_TOKEN } from '../config/contracts'
-import { ExplorerLink } from '../components/ui'
 
-/** Official links are published by the owner. Nothing is invented here. */
-const SOCIALS: { name: string; url: string | null }[] = [
-  { name: 'Telegram', url: null },
-  { name: 'X (Twitter)', url: null },
+const SOCIALS = [
+  {
+    name: 'X (Twitter)',
+    url: 'https://x.com/BMCilluminati',
+    description: 'Official news and announcements',
+  },
+  {
+    name: 'Telegram',
+    url: 'https://t.me/BMCilluminatiEcosystem',
+    description: 'Join the BMC Illuminati ecosystem',
+  },
+  {
+    name: 'X Community',
+    url: 'https://x.com/i/communities/1888274924927938783',
+    description: 'Connect with the Illuminati community',
+  },
 ]
 
 const FAQ: { q: string; a: string }[] = [
@@ -38,50 +50,85 @@ export function CommunityPage() {
       <section className="section">
         <div className="section-head">
           <h1 style={{ fontSize: 'var(--text-xl)' }}>Community</h1>
-          <p>Project information, announcements, official channels and the safety basics every collector should know.</p>
+          <p>
+            Join the BMC Illuminati community. Follow our official
+            announcements, connect with members and stay informed
+            about the ecosystem.
+          </p>
         </div>
+
         <div className="grid grid-2">
           <Card>
             <h3>About the project</h3>
             <p>
-              {BRAND.name} is the encrypted gateway to the BMC ecosystem: a {PASS_SUPPLY.total}-piece PASS collection, an ETH/BMC
-              swap, three staking options and an IMD burn center, all on Ethereum mainnet.
+              {BRAND.name} is the encrypted gateway to the BMC ecosystem:
+              a {PASS_SUPPLY.total}-piece PASS collection, an ETH/BMC
+              swap, three staking options and an IMD burn center,
+              all on Ethereum mainnet.
             </p>
             <p className="caption">
               BMC token: <ExplorerLink address={BMC_TOKEN} />
             </p>
           </Card>
+
           <Card>
             <h3>Announcements</h3>
-            <p>No announcements yet. Contract deployments, verified routes and mint dates will be posted here first.</p>
-          </Card>
-          <Card>
-            <h3>Official channels</h3>
-            <ul className="small muted">
-              {SOCIALS.map((s) => (
-                <li key={s.name}>
-                  {s.url ? (
-                    <a href={s.url} target="_blank" rel="noopener noreferrer">
-                      {s.name}
-                    </a>
-                  ) : (
-                    <span>
-                      {s.name}: not yet published by the owner
-                    </span>
-                  )}
-                </li>
-              ))}
-            </ul>
-            <p className="caption">
-              Only links listed here are official. Treat any other account claiming to be BMC Illuminati as unverified.
+            <p>
+              Follow our official X account for announcements,
+              development updates and future launch information.
+              Contract deployments and mint dates will be announced
+              only after verification.
             </p>
           </Card>
+
+          <Card>
+            <h3>JOIN THE ILLUMINATI</h3>
+            <p>KNOW • CREATE • BURN • RISE</p>
+            <p>
+              Become part of the BMC Illuminati ecosystem.
+              Connect through our official social channels.
+            </p>
+
+            <div className="stack">
+              {SOCIALS.map((social) => (
+                <a
+                  key={social.name}
+                  href={social.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    display: 'block',
+                    padding: '14px 18px',
+                    border: '1px solid #c9a84c',
+                    borderRadius: '10px',
+                    color: '#d9b45b',
+                    textDecoration: 'none',
+                    marginBottom: '10px',
+                  }}
+                >
+                  <strong>{social.name} ↗</strong>
+                  <span
+                    className="caption"
+                    style={{ display: 'block', marginTop: '4px' }}
+                  >
+                    {social.description}
+                  </span>
+                </a>
+              ))}
+            </div>
+
+            <p className="caption">
+              These are the official BMC Illuminati social links.
+              Beware of impersonators and fake support accounts.
+            </p>
+          </Card>
+
           <Card>
             <h3>Collector education</h3>
             <ul className="small muted">
               <li>A PASS is a token in your wallet. Whoever controls the wallet controls the PASS.</li>
-              <li>Genesis art is hosted on IPFS; Standard art is generated on-chain. Both are readable by any marketplace.</li>
-              <li>Mystery mints are random. A preview on this site is never a promise of rarity.</li>
+              <li>Genesis art is hosted on IPFS; Standard art is generated on-chain.</li>
+              <li>Mystery mints are random. A preview is never a promise of rarity.</li>
               <li>Burned BMC and IMD are gone permanently. Nobody can reverse a burn.</li>
             </ul>
           </Card>
@@ -92,10 +139,13 @@ export function CommunityPage() {
         <SectionHead title="Wallet safety" id="safety" />
         <Notice title="This site will never ask for your seed phrase or private key" tone="danger">
           <p>
-            Anyone who asks for them is trying to steal from you. The site only requests a wallet connection, a network switch
-            to Ethereum mainnet and, when a feature is live, a transaction you confirm in your own wallet.
+            Anyone who asks for them is trying to steal from you.
+            The site only requests a wallet connection, a network
+            switch to Ethereum mainnet and, when a feature is live,
+            a transaction you confirm in your own wallet.
           </p>
         </Notice>
+
         <div className="grid grid-3">
           <Card compact>
             <h4>Approve only what you spend</h4>
