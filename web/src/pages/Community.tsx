@@ -4,9 +4,23 @@ import { BMC_TOKEN } from '../config/contracts'
 import { ExplorerLink } from '../components/ui'
 
 /** Official links are published by the owner. Nothing is invented here. */
+
+/** Official BMC Illuminati community links. */
 const SOCIALS: { name: string; url: string | null }[] = [
-  { name: 'Telegram', url: null },
-  { name: 'X (Twitter)', url: null },
+  {
+    name: 'Telegram',
+    url: 'https://t.me/BMCilluminatiEcosystem',
+  },
+  {
+    name: 'X (Twitter)',
+    url: 'https://x.com/BMCilluminati',
+  },
+  {
+    name: 'X Community',
+    url: 'https://x.com/i/communities/1888274924927938783',
+  },
+]
+
 ]
 
 const FAQ: { q: string; a: string }[] = [
